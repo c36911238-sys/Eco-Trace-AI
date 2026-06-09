@@ -1,24 +1,33 @@
 services:
-  # Python FastAPI Backend
+  # ── Python FastAPI Backend ────────────────────────────────────────────────
   - type: web
     name: ecotrace-backend
     runtime: python
+    pythonVersion: "3.11"
     rootDir: backend
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app.main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT
+    startCommand: >
+      gunicorn app.main:app
+      --workers 1
+      --worker-class uvicorn.workers.UvicornWorker
+      --bind 0.0.0.0:$PORT
+      --timeout 120
     envVars:
       - key: SECRET_KEY
         generateValue: true
       - key: SQLALCHEMY_DATABASE_URI
         value: sqlite+aiosqlite:///./ecotrace.db
+      - key: BACKEND_CORS_ORIGINS
+        value: https://ecotrace-frontend.onrender.com
 
-  # Next.js Frontend
+  # ── Next.js Frontend ──────────────────────────────────────────────────────
   - type: web
     name: ecotrace-frontend
     runtime: node
+    nodeVersion: "20"
     rootDir: frontend
-    buildCommand: npm install && npm run build
+    buildCommand: npm ci && npm run build
     startCommand: npm run start
     envVars:
       - key: NEXT_PUBLIC_API_URL
-        value: https://ecotrace-backend.onrender.com/api/v1 # Note: update this with your actual deployed backend service URL
+        value: https://ecotrace-backend.onrender.com/api/v1

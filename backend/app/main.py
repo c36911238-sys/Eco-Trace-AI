@@ -47,7 +47,7 @@ else:
         On shutdown: disposes of the connection pool.
         """
         async with engine.begin() as conn:
-            await conn.run_sync(models.Base.metadata.create_all)
+            await conn.run_sync(models.Base.metadata.create_all, checkfirst=True)
         yield
         await engine.dispose()
 
