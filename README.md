@@ -217,12 +217,6 @@ The Python FastAPI backend can be hosted on any containerized or cloud platform:
 2. **Persistent Storage**: If using the default SQLite setup, configure a persistent volume mount at `/app/ecotrace.db` so database changes persist across server restarts.
 3. **Production DB (Optional)**: Swap `SQLALCHEMY_DATABASE_URI` in `backend/app/core/config.py` to your cloud database (e.g. Supabase or Neon PostgreSQL) for a fully stateless API tier.
 
----
 
-## 👥 Contributors
 
-* **Chetanya Pandey** ([@c36911238-sys](https://github.com/c36911238-sys)) — Lead Architect & Developer
-
----
-
-*Developed with 💚 by the EcoTrace AI+ team.*
+*Developed with 💚 by the EcoTrace*
