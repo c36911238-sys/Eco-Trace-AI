@@ -218,5 +218,11 @@ The Python FastAPI backend can be hosted on any containerized or cloud platform:
 3. **Production DB (Optional)**: Swap `SQLALCHEMY_DATABASE_URI` in `backend/app/core/config.py` to your cloud database (e.g. Supabase or Neon PostgreSQL) for a fully stateless API tier.
 
 
+## 👥 Contributors
 
-*Developed with 💚 by the EcoTrace*
+* **Chetanya Pandey** ([@c36911238-sys](https://github.com/c36911238-sys)) — Lead Architect & Developer
+
+---
+
+*Developed with 💚 by the EcoTrace AI+ team.*
+
