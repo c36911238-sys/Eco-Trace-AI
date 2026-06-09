@@ -83,14 +83,14 @@ frontend/
 
 ---
 
-## ☁️ Vercel Deployment
+## ☁️ Railway Deployment
 
-Deploying the client-side Next.js PWA to Vercel requires simple configurations:
-1. Link your repository in the **Vercel Dashboard**.
-2. Configure **Root Directory** as `frontend`.
-3. In **Environment Variables**, add:
-   - `NEXT_PUBLIC_API_URL`: The URL of your deployed backend service.
-4. Click **Deploy**. Vercel will build and distribute the production-ready Next.js client.
+Deploying the client-side Next.js PWA to Railway requires simple configurations:
+1. Create a service in Railway linked to this GitHub repository.
+2. Configure **Root Directory** to `frontend`.
+3. In the **Variables** tab, add:
+   - `NEXT_PUBLIC_API_URL`: Set this to your deployed FastAPI backend URL (e.g., `https://your-backend-service.up.railway.app/api/v1`).
+4. Railway will automatically build and serve the production-ready Next.js client using Nixpacks.
 
 ---
 

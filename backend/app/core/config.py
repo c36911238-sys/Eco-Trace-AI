@@ -35,10 +35,6 @@ class Settings(BaseSettings):
 
     @model_validator(mode="after")
     def validate_and_adjust_settings(self) -> "Settings":
-        # If running on Vercel, redirect SQLite database to /tmp to avoid read-only filesystem crash
-        if os.getenv("VERCEL") == "1" and self.SQLALCHEMY_DATABASE_URI.startswith("sqlite"):
-            self.SQLALCHEMY_DATABASE_URI = "sqlite+aiosqlite:////tmp/ecotrace.db"
-
         # Allow a weak secret ONLY if explicitly running tests.
         is_testing = os.getenv("TESTING", "false").lower() == "true"
         if not is_testing and len(self.SECRET_KEY) < 32:

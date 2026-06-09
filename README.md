@@ -200,22 +200,24 @@ ecotrace-ai/
 
 ---
 
-## ☁️ Deployment Guide
+## ☁️ Deployment Guide (Railway)
 
-### 1. Frontend (Vercel)
-The client-side Next.js application is fully optimized for hosting on Vercel:
-1. Go to [Vercel](https://vercel.com) and click **Add New** → **Project**.
-2. Select your imported repository.
-3. In the project settings, set the **Root Directory** to `frontend`.
-4. In the **Environment Variables** section, add:
-   - `NEXT_PUBLIC_API_URL`: Set this to your deployed FastAPI backend URL (e.g., `https://ecotrace-api.up.railway.app/api/v1`).
-5. Click **Deploy**. Vercel will build the optimized production package and serve it as a Progressive Web App (PWA).
+Both the Next.js frontend and FastAPI backend can be deployed easily on [Railway](https://railway.app). Follow the steps below to set them up:
 
-### 2. Backend (Railway or Render)
-The Python FastAPI backend can be hosted on any containerized or cloud platform:
-1. **Railway**: Link your repository, select the `backend` folder, and configure start command as `uvicorn app.main:app --host 0.0.0.0 --port $PORT`.
-2. **Persistent Storage**: If using the default SQLite setup, configure a persistent volume mount at `/app/ecotrace.db` so database changes persist across server restarts.
-3. **Production DB (Optional)**: Swap `SQLALCHEMY_DATABASE_URI` in `backend/app/core/config.py` to your cloud database (e.g. Supabase or Neon PostgreSQL) for a fully stateless API tier.
+### 1. Backend Setup on Railway
+1. **Create a Service**: In your Railway Project, click **New** → **GitHub Repo** and select this repository.
+2. **Configure Root Directory**: Under **Settings** -> **Root Directory**, set it to `backend`.
+3. **Start Command**: Railway will automatically build the app using Nixpacks, but you should verify or set the Start Command in Settings to:
+   `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+4. **Environment Variables**: Add any required environment variables (e.g., `SECRET_KEY`, `SQLALCHEMY_DATABASE_URI` if using PostgreSQL).
+5. **Persistent Storage (SQLite)**: If you use the default SQLite database, configure a persistent volume mount at `/app/` in your Railway backend service to ensure database changes persist across server restarts.
+
+### 2. Frontend Setup on Railway
+1. **Create a Service**: Click **New** → **GitHub Repo** and select the same repository.
+2. **Configure Root Directory**: Under **Settings** -> **Root Directory**, set it to `frontend`.
+3. **Environment Variables**: In the **Variables** tab, add:
+   - `NEXT_PUBLIC_API_URL`: Set this to your deployed FastAPI backend URL (e.g., `https://your-backend-service.up.railway.app/api/v1`).
+4. **Deploy**: Nixpacks will automatically build and start the Next.js client.
 
 
 ## 👥 Contributors
