@@ -1,4 +1,4 @@
-# 🌿 EcoTrace AI+
+# 🌱 EcoTrace AI+
 
 > **From Awareness to Action: The intelligent, automated carbon tracking platform powered by Explainable AI (SHAP) and Digital Carbon Twins.**
 
@@ -9,7 +9,7 @@
 [![SHAP](https://img.shields.io/badge/Explainable%20AI-SHAP-blue?style=flat-square)](https://github.com/shap/shap)
 [![PWA](https://img.shields.io/badge/PWA-Progressive%20Web%20App-purple?style=flat-square)](https://web.dev/explore/progressive-web-apps)
 
-EcoTrace AI+ is a production-ready Progressive Web Application (PWA) designed to demystify carbon footprint tracking, automate consumption logging, and empower users with actionable, ML-driven insights to reduce their daily environmental impact.
+EcoTrace AI+ is a production-grade Progressive Web Application (PWA) designed to demystify carbon footprint tracking, automate consumption logging, and empower users with actionable, ML-driven insights to reduce their daily environmental impact.
 
 ---
 
@@ -38,13 +38,13 @@ EcoTrace AI+ bridges this gap by merging **Automated Receipt scanning (OCR)**, *
 | :--- | :--- | :--- |
 | 🤖 **Explainable AI (SHAP)** | Displays exact contribution percentage of each category to the user's footprint relative to the average baseline. | `scikit-learn` (Random Forest) + `shap` |
 | 📊 **Digital Carbon Twin** | Simulates future carbon trajectories and projects savings over 30/60/90 days for custom scenarios. | `scikit-learn` (Linear Regression) + `pandas` |
-| 📸 **OCR Receipt Intelligence** | Instantly extracts emission categories and estimated kg CO₂ from uploaded receipt images. | Abstracted image parsing engine |
+| 📷 **OCR Receipt Intelligence** | Instantly extracts emission categories and estimated kg CO₂ from uploaded receipt images. | Abstracted image parsing engine |
 | 🏆 **Community Impact Engine** | Global leaderboard ranking users by absolute reductions; tracks active users and collective forest savings. | Next.js client + Tailwind + Recharts |
 | 📱 **Progressive Web App (PWA)** | Offline support, installable on mobile and desktop, responsive layout, fast load times. | Next.js + CSS styling system |
 
 ---
 
-## 📱 Prototype Walkthrough
+## 📱 Running Prototype Screens
 
 | 🌐 High-Impact Landing Page | 📊 SHAP Explainable AI Insights |
 | :---: | :---: |
@@ -175,7 +175,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the application in y
 
 ---
 
-## 📁 Key File Structure
+## 📂 Folder Structure
 
 ```
 ecotrace-ai/
@@ -219,6 +219,10 @@ The Python FastAPI backend can be hosted on any containerized or cloud platform:
 
 ---
 
+## 👥 Contributors
+
+* **Chetanya Pandey** ([@c36911238-sys](https://github.com/c36911238-sys)) — Lead Architect & Developer
+
+---
+
 *Developed with 💚 by the EcoTrace AI+ team.*
-#   E c o - T r a c e - A I -  
- 
