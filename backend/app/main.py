@@ -46,8 +46,14 @@ else:
         On startup: creates all database tables (use Alembic for production migrations).
         On shutdown: disposes of the connection pool.
         """
+        from sqlalchemy.exc import OperationalError
         async with engine.begin() as conn:
-            await conn.run_sync(models.Base.metadata.create_all, checkfirst=True)
+            try:
+                await conn.run_sync(models.Base.metadata.create_all)
+            except OperationalError as e:
+                if "already exists" not in str(e).lower():
+                    raise
+                # Tables already exist (restart/redeploy) — safe to continue
         yield
         await engine.dispose()
 
