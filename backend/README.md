@@ -89,4 +89,4 @@ backend/
 
 ---
 
-*Developed with 💚 by the EcoTrace AI+ team.*
+*Developed with 💚 by the EcoTrace AI*
