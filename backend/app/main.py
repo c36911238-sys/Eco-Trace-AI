@@ -46,14 +46,26 @@ else:
         On startup: creates all database tables (use Alembic for production migrations).
         On shutdown: disposes of the connection pool.
         """
+        from sqlalchemy import inspect as sa_inspect
         from sqlalchemy.exc import OperationalError
-        async with engine.begin() as conn:
-            try:
-                await conn.run_sync(models.Base.metadata.create_all)
-            except OperationalError as e:
-                if "already exists" not in str(e).lower():
-                    raise
-                # Tables already exist (restart/redeploy) — safe to continue
+
+        def _create_missing_tables(sync_conn):
+            """Only create tables that don't already exist (safe for multi-worker restarts)."""
+            existing = sa_inspect(sync_conn).get_table_names()
+            missing = [
+                t for t in models.Base.metadata.sorted_tables
+                if t.name not in existing
+            ]
+            if missing:
+                models.Base.metadata.create_all(sync_conn, tables=missing)
+
+        try:
+            async with engine.begin() as conn:
+                await conn.run_sync(_create_missing_tables)
+        except OperationalError as e:
+            # Last-resort: two workers raced and both tried to create the same table
+            if "already exists" not in str(e).lower():
+                raise
         yield
         await engine.dispose()
 
