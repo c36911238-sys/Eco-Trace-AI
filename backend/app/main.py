@@ -1,3 +1,15 @@
+import sys
+import subprocess
+
+# Ensure email-validator is installed (workaround for Vercel dependency caching issue)
+try:
+    import email_validator
+except ImportError:
+    try:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "email-validator"])
+    except Exception as e:
+        sys.stderr.write(f"Runtime pip install failed: {e}\n")
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
