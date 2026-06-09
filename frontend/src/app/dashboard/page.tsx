@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Camera, Zap, Car, Apple, ShoppingBag, Trash, Loader2 } from 'lucide-react';
-import { fetchApi } from '@/lib/api';
+import { fetchApi, BASE_URL } from '@/lib/api';
 
 /**
  * A single SHAP explanation value returned by the backend AI engine.
@@ -34,7 +34,7 @@ const CATEGORY_ICON_MAP: Record<string, React.ReactNode> = {
   Waste: <Trash className="w-4 h-4 text-gray-500" aria-hidden="true" />,
 };
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000/api/v1';
+// BASE_URL is imported from '@/lib/api'
 const MAX_UPLOAD_BYTES = 5 * 1024 * 1024; // 5 MB
 const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 
