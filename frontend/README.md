@@ -102,4 +102,4 @@ The client interfaces with the FastAPI backend endpoints via `src/lib/api.ts`:
 
 ---
 
-*Developed with 💚 by the EcoTrace AI+ team.*
+*Developed with 💚 by the EcoTrace AI*
