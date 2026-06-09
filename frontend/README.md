@@ -83,14 +83,24 @@ frontend/
 
 ---
 
-## ☁️ Railway Deployment
+## ☁️ Deployment
 
+### Railway
 Deploying the client-side Next.js PWA to Railway requires simple configurations:
 1. Create a service in Railway linked to this GitHub repository.
 2. Configure **Root Directory** to `frontend`.
 3. In the **Variables** tab, add:
    - `NEXT_PUBLIC_API_URL`: Set this to your deployed FastAPI backend URL (e.g., `https://your-backend-service.up.railway.app/api/v1`).
 4. Railway will automatically build and serve the production-ready Next.js client using Nixpacks.
+
+### Render
+Deploying the client-side Next.js PWA to Render requires simple configurations:
+1. Create a service in Render linked to this GitHub repository (or use the repository's `render.yaml` Blueprint).
+2. Configure **Root Directory** to `frontend`.
+3. Set the runtime to **Node**.
+4. Set the build command to `npm install && npm run build` and the start command to `npm run start`.
+5. In the environment variables, add:
+   - `NEXT_PUBLIC_API_URL`: The URL of your deployed backend service (e.g., `https://ecotrace-backend.onrender.com/api/v1`).
 
 ---
 

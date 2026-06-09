@@ -200,11 +200,13 @@ ecotrace-ai/
 
 ---
 
-## ☁️ Deployment Guide (Railway)
+## ☁️ Deployment Guide
 
-Both the Next.js frontend and FastAPI backend can be deployed easily on [Railway](https://railway.app). Follow the steps below to set them up:
+### Railway Deployment
 
-### 1. Backend Setup on Railway
+Both the Next.js frontend and FastAPI backend can be deployed easily on [Railway](https://railway.app):
+
+#### 1. Backend Setup on Railway
 1. **Create a Service**: In your Railway Project, click **New** → **GitHub Repo** and select this repository.
 2. **Configure Root Directory**: Under **Settings** -> **Root Directory**, set it to `backend`.
 3. **Start Command**: Railway will automatically build the app using Nixpacks, but you should verify or set the Start Command in Settings to:
@@ -212,12 +214,28 @@ Both the Next.js frontend and FastAPI backend can be deployed easily on [Railway
 4. **Environment Variables**: Add any required environment variables (e.g., `SECRET_KEY`, `SQLALCHEMY_DATABASE_URI` if using PostgreSQL).
 5. **Persistent Storage (SQLite)**: If you use the default SQLite database, configure a persistent volume mount at `/app/` in your Railway backend service to ensure database changes persist across server restarts.
 
-### 2. Frontend Setup on Railway
+#### 2. Frontend Setup on Railway
 1. **Create a Service**: Click **New** → **GitHub Repo** and select the same repository.
 2. **Configure Root Directory**: Under **Settings** -> **Root Directory**, set it to `frontend`.
 3. **Environment Variables**: In the **Variables** tab, add:
    - `NEXT_PUBLIC_API_URL`: Set this to your deployed FastAPI backend URL (e.g., `https://your-backend-service.up.railway.app/api/v1`).
 4. **Deploy**: Nixpacks will automatically build and start the Next.js client.
+
+---
+
+### Render Deployment
+
+We provide a Blueprint specification (`render.yaml`) in the repository root for effortless deployment to [Render](https://render.com).
+
+#### Steps to Deploy:
+1. Go to your [Render Dashboard](https://dashboard.render.com).
+2. Click **New** → **Blueprint**.
+3. Select your linked GitHub repository.
+4. Render will read the `render.yaml` configuration and propose setting up:
+   * **`ecotrace-backend`**: Python service serving the FastAPI backend.
+   * **`ecotrace-frontend`**: Node service serving the Next.js frontend.
+5. Once deployed, get the URL of your backend service (e.g., `https://ecotrace-backend.onrender.com`).
+6. Update the `NEXT_PUBLIC_API_URL` environment variable under your frontend service settings in Render to point to `<your-backend-url>/api/v1` and trigger a rebuild.
 
 
 ## 👥 Contributors
